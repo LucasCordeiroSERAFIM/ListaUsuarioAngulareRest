@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CadastroService } from '../services/cadastro.service';
 
 @Component({
   selector: 'home',
@@ -7,23 +8,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  formulario = Array();/**variavel formulario */
+
+  /**itens form */
+   id:string;
+  nome: string; 
+  cargo: string;
+  email:string;
+
 usuario:any=[];
-  constructor() { }
+  constructor(public service:CadastroService) { }
 
   ngOnInit() {
     this.listarDados();
   }
   
   listarDados(){
-    this.usuario =[
-      {id:0,nome:'Lucas',cargo:'Analista de Sistemas',email:'lucas.cordeiro@totvs.br'},
-      {id:1,nome:'Joabe',cargo:'Engenjeiro',email:'joabe.queiroz@totvs.br'},
-      {id:2,nome:'Rafael',cargo:'Gerente',email:'rafaelmoreno@bol.br'}
-    ]
+   /**Lista cadastros */
+   this.service.getCadastro().subscribe((data: any) => {
+     this.usuario = data;
+     console.log("Dados",data);
+     debugger;
+   });
   }
 
-  novo(id){
-    console.log("novo",id);
+  validaForm(){
+    return (this.nome !== '' && this.cargo!=='' && this.email!=='' )
+  }
+
+  Salvar(form){
+    console.log("Dados Form",form.value)
   }
   editar(id){
     console.log("editar",id);
