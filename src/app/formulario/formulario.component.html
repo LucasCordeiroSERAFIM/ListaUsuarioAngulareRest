@@ -1,0 +1,158 @@
+<h2>Formulário de Cadastro</h2><br>
+
+<form #cadastroForm="ngForm">
+    <div class="po-row">
+            
+        <!--campo id-->
+        <po-input
+        class="po-md-2"
+        name="id"
+        [(ngModel)]="id"
+        p-clean
+        p-require="true"
+        p-label="Código"
+        p-maxlength="10"
+    ></po-input>
+        <po-input
+            class="po-md-10"
+            name="nome"
+            [(ngModel)]="nome"
+            p-icon="po-icon-user"
+            p-clean
+            p-require="true"
+            p-label="Nome"
+            p-maxlength="10"
+        ></po-input>
+
+    <!--campo data -->
+        <po-datepicker
+            class="po-md-4"
+            name="data"
+            [(ngModel)]="data"
+            p-clean
+            p-label="Data"
+        ></po-datepicker>
+
+        <!--campo lembrar-->
+        <po-switch
+            class="po-md-1"
+            name="switch"
+            [(ngModel)]="switch"
+            p-label="lembrar"
+            p-label-on=" "
+            p-label-off=" "
+        ></po-switch>
+<!--campo Linguagem-->
+        <po-select
+            class="po-lg-12"
+            name="selecao"
+            [(ngModel)]="selecao"
+            p-clean
+            p-label="Líguagem de programação favorita"
+            [p-options]="selectOptions"
+        ></po-select>
+    </div><br><br>
+     <!--campo Senha-->
+     <div class="po-row">
+        <po-password
+            class="po-lg-2"
+            name="password"
+            [(ngModel)]="password"
+            p-label="Senha de Usuário"
+            p-clean
+        ></po-password>
+
+          <!--campo telefone-->
+        <po-number
+            class="po-md-6"
+            name="fone"
+            [(ngModel)]="fone"
+            p-label="Telefone"
+            p-clean
+        ></po-number>
+
+          <!--campo Email-->
+        <po-email
+        class="po-md-6"
+            name="email"
+            [(ngModel)]="email"
+            p-label="Email"
+            p-clean
+        ></po-email>
+    
+          <!--campo url-->
+        <po-url
+            class="po-lg-4"
+            name="link"
+            [(ngModel)]="link"
+            p-label="Url"
+            p-clean
+        ></po-url>
+    </div><br>
+<!--campo uploud-->
+    <div class="po-row">
+        <po-upload
+            class="po-lg-6"
+            name="upload"
+            [(ngModel)]="upload"
+            p-label="Upload"
+            p-clean
+            p-url="https://thf.totvs.com.br/sample/api/uploads/addFile"
+        ></po-upload>
+
+          <!--campo radio-->
+        <po-radio-group
+            class="po-md-6"
+            name="radiob"
+            [(ngModel)]="radiob"
+            p-columns="4"
+            p-label="Rádio Button"
+            [p-options]="radioOptions"
+        ></po-radio-group>
+
+    <!--campo checkbox-->
+        <po-checkbox-group
+            class="po-md-6"
+            name="Bcheckbox"
+            [(ngModel)]="Bcheckbox"
+            p-columns="4"
+            p-label="checkbox"
+            [p-options]="checkboxOptions"
+        ></po-checkbox-group>
+    </div><br>
+   <!--multiplo select-->
+   <div class="po-row">
+    <po-multiselect
+        class="po-md-12"
+        name="_multiselect"
+        [(ngModel)]="_multiselect"
+        p-label="Cores Favoritas"
+        [p-options]="multiselectOptions"
+    ></po-multiselect>
+
+    <!--área de texto-->
+    <po-textarea
+        class="po-md-12"
+        name="_textarea"
+        [(ngModel)]="_textarea"
+        p-label="área de texto"
+    ></po-textarea>            
+</div>
+
+<!--botão salvar-->
+<div class="po-row">
+    <po-button
+        class="po-md-6"
+        p-label="Salvar"
+        p-type="primary"
+        (p-click)="onClickSubmit(cadastroForm)"
+        [p-disabled]="!validaForm()"
+    ></po-button>
+    <po-button
+    class="po-md-6"
+    p-label="Canselar"
+    p-type="danger"
+    (p-click)="limpar(cadastroForm)"
+></po-button>
+</div>
+</form>

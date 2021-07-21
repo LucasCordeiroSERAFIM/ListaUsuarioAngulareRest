@@ -1,0 +1,59 @@
+<style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    th{
+        background-color: black;
+        color: blanchedalmond;
+    }
+    
+  
+    </style>
+
+<h2>Usuários</h2><br>
+
+<div class="po-row">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Código</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Cargo</th>
+            <th scope="col">E-mail</th>
+            <th scope="col"></th>
+            <th scope="col"><po-button p-label="+" (p-click)="modal.open()"> </po-button></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let e of usuario">
+            <td>
+              {{e.id}}
+            </td>
+            <td>
+              {{e.nome}}
+            </td>
+            <td>
+              {{e.cargo}}
+            </td>
+            <td>
+              {{e.email}}
+            </td>
+            <td>
+             <button (click)="editar(e.id)">EDITAR</button>
+             <button (click)="excluir(e.id)">EXCLUIR</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+
+<!--modal-->
+<po-modal #modal p-title="PO Modal"> We are TOTVERS!!! </po-modal>
