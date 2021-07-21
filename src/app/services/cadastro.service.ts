@@ -10,10 +10,10 @@ export class CadastroService {
 
   // Lista todos
   getCadastro(){
-    debugger;
-    return this.http.get<any[]>(`${this.url}`)
+    return this.http.get(`${this.url}`)
   }
   postCadastro(cadastro){
+    debugger;
       return this.http.post<any[]>(`${this.url}`, cadastro)
     }
 
@@ -21,7 +21,7 @@ export class CadastroService {
    getCadastroById(id: number){
     return this.http.get<any[]>(`${this.url + "/" + id}`)
   }
-  
+
   //deletar
   delCadastro(id: number){
     return this.http.delete<any[]>(`${this.url + "/" + id}`)

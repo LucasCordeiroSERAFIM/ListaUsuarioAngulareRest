@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { PoCheckboxGroupOption, PoComboOption, PoModalAction, PoModalComponent, PoNotificationService } from '@portinari/portinari-ui';
 import { CadastroService } from '../services/cadastro.service';
 
 @Component({
@@ -6,44 +8,77 @@ import { CadastroService } from '../services/cadastro.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent{
+  @ViewChild('cadastroForm', { static: true }) form: NgForm;//criando o formulario
+  @ViewChild(PoModalComponent, { static: true }) poModal: PoModalComponent//criando o modal
+ 
 
-  formulario = Array();/**variavel formulario */
+  /*items do formulario do modal*/
+  sobremesa: string = '';
+  frutas: Array<string>;
+  observacao: string = '';
+  id:number = 0;
+  nome:string = '';
+  cargo:string ='';
+   email:string='';
+  /**fexar modal */
 
-  /**itens form */
-   id:string;
-  nome: string; 
-  cargo: string;
-  email:string;
+  close: PoModalAction = {
+    action: () => {
+      this.closeModal();
+    },
+    label: 'Cancelar',
+    danger: true
+  };
+
+  /**confirmar */
+
+  confirm: PoModalAction = {
+    action: () => {
+      /**verifica se está válida as informações do modal */
+      this.verificaModalConteudo();
+    },
+    label: 'Confirmar'
+  };
 
 usuario:any=[];
-  constructor(public service:CadastroService) { }
-
+  constructor(
+    public service:CadastroService,
+    private poNotification: PoNotificationService) { }
+    closeModal() {
+      this.poModal.close();
+    }
+  
+    Abrirmodal1() {
+      this.poModal.open();
+    }
   ngOnInit() {
     this.listarDados();
   }
   
   listarDados(){
-   /**Lista cadastros */
+   //Lista cadastros 
    this.service.getCadastro().subscribe((data: any) => {
      this.usuario = data;
      console.log("Dados",data);
-     debugger;
    });
   }
+  private verificaModalConteudo() {
+    if (this.form.invalid) {
+      const orderInvalidMessage = 'Erro.';
+      this.poNotification.warning(orderInvalidMessage);
+    } else {
+      this.confirm.loading = true;
 
-  validaForm(){
-    return (this.nome !== '' && this.cargo!=='' && this.email!=='' )
+      setTimeout(() => {
+
+        /*service salvar*/
+        this.poNotification.success(`usuário ${this.nome}, Cadastrado com sucesso.`);
+        this.confirm.loading = false;
+        this.closeModal();
+      }, 700);
+    }
   }
 
-  Salvar(form){
-    console.log("Dados Form",form.value)
-  }
-  editar(id){
-    console.log("editar",id);
-  }
-  excluir(id){
-    console.log("excluir",id);
-  }
 
 }

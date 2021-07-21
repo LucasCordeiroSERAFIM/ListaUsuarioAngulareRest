@@ -10,7 +10,7 @@
             <th scope="col">Cargo</th>
             <th scope="col">E-mail</th>
             <th scope="col">Opções</th>
-            <th scope="col"><po-button p-label="+" (p-click)="modal.open()"> </po-button></th>
+            <th scope="col"><po-button p-label="+" (p-click)="Abrirmodal1()"> </po-button></th>
           </tr>
         </thead>
         <tbody>
@@ -37,66 +37,11 @@
 </div>
 
 <!--modal-->
-<po-modal #modal p-title="Cadastrar Novo Usuário">
-  <form #cadastroForm="ngForm">
-    <div class="po-row">
-            
-        <!--campo id-->
-        <po-input
-        class="po-md-2"
-        name="id"
-        [(ngModel)]="id"
-        p-clean
-        p-require="true"
-        p-label="Código"
-        p-maxlength="10"
-    ></po-input>
-    <!--Nome-->
-        <po-input
-            class="po-md-10"
-            name="nome"
-            [(ngModel)]="nome"
-            p-icon="po-icon-user"
-            p-clean
-            p-require="true"
-            p-label="Nome"
-            p-maxlength="10"
-        ></po-input>
-        <!--cargo-->
-        <po-input
-        class="po-md-12"
-        name="cargo"
-        [(ngModel)]="cargo"
-        p-icon="po-icon-attach"
-        p-clean
-        p-require="true"
-        p-label="Cargo"
-        p-maxlength="10"
-    ></po-input>
-          <!--campo Email-->
-        <po-email
-        class="po-md-12"
-            name="email"
-            [(ngModel)]="email"
-            p-label="Email"
-            p-clean
-        ></po-email>
-    </div>
-<!--botão salvar-->
-<div class="po-row">
-    <po-button
-        class="po-md-6"
-        p-label="Salvar"
-        p-type="primary"
-        (p-click)="Salvar(cadastroForm)"
-        [p-disabled]="!validaForm()"
-    ></po-button>
-    <po-button
-    class="po-md-6"
-    p-label="Canselar"
-    p-type="danger"
-    (p-click)="limpar(cadastroForm)"
-></po-button>
-</div>
-</form>
+<po-modal p-title="Novo Usuário" [p-primary-action]="confirm" [p-secondary-action]="close">
+  <form #optionsForm="ngForm">
+    <!--Conteudo do Modal-->
+ 
+ <!--fim do modal--> 
+  </form>
 </po-modal>
+
