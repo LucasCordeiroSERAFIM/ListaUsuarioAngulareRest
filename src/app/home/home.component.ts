@@ -11,6 +11,7 @@ import { CadastroService } from '../services/cadastro.service';
 export class HomeComponent{
   @ViewChild('cadastroForm', { static: true }) form: NgForm;//criando o formulario
   @ViewChild(PoModalComponent, { static: true }) poModal: PoModalComponent//criando o modal
+  
  
 
   /*items do formulario do modal*/
@@ -52,6 +53,7 @@ usuario:any=[];
     Abrirmodal1() {
       this.poModal.open();
     }
+   
   ngOnInit() {
     this.listarDados();
   }
@@ -80,5 +82,13 @@ usuario:any=[];
     }
   }
 
+  delCadastro(id){
+    this.service.delCadastro(id).subscribe((data: any) => {
+      this.listarDados();
+    });
+  }
 
+  editar(){
+    this.poModal.open();
+  }
 }

@@ -10,7 +10,7 @@
             <th scope="col">Cargo</th>
             <th scope="col">E-mail</th>
             <th scope="col">Opções</th>
-            <th scope="col"><po-button p-label="+" (p-click)="Abrirmodal1()"> </po-button></th>
+            <th scope="col"><po-button p-label="+" (p-click)="Abrirmodal1(0)"> </po-button></th>
           </tr>
         </thead>
         <tbody>
@@ -28,8 +28,8 @@
               {{e.email}}
             </td>
             <td>
-              <po-button p-label="Editar" (click)="editar(e.id)"></po-button>
-              <po-button p-label="Excluir" (click)="excluir(e.id)"></po-button>
+              <po-button p-label="Editar" (p-click)="Abrirmodal1(e.id)"></po-button>
+              <po-button p-label="Excluir" (click)="Abrirmodal2(e.id)"></po-button>
             </td>
           </tr>
         </tbody>
@@ -38,10 +38,13 @@
 
 <!--modal-->
 <po-modal p-title="Novo Usuário" [p-primary-action]="confirm" [p-secondary-action]="close">
+
   <form #optionsForm="ngForm">
     <!--Conteudo do Modal-->
  
  <!--fim do modal--> 
   </form>
 </po-modal>
+
+
 
