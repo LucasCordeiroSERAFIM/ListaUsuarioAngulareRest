@@ -11,7 +11,9 @@ import { CadastroService } from '../services/cadastro.service';
 export class HomeComponent{
   @ViewChild('cadastroForm', { static: true }) form: NgForm;//criando o formulario
   @ViewChild(PoModalComponent, { static: true }) poModal: PoModalComponent//criando o modal
-  
+/**loding */
+isHideLoading = true;
+
  
 
   /*items do formulario do modal*/
@@ -45,7 +47,9 @@ export class HomeComponent{
 usuario:any=[];
   constructor(
     public service:CadastroService,
-    private poNotification: PoNotificationService) { }
+    private poNotification: PoNotificationService) {
+    
+     }
     closeModal() {
       this.poModal.close();
     }
@@ -56,13 +60,20 @@ usuario:any=[];
    
   ngOnInit() {
     this.listarDados();
+  
   }
   
   listarDados(){
+    this.isHideLoading = false;
    //Lista cadastros 
+   const message='Dados Carregados';
    this.service.getCadastro().subscribe((data: any) => {
      this.usuario = data;
+     setTimeout(() => {  this.isHideLoading = true;
+      this.poNotification.success(message);
+    }, 450);
      console.log("Dados",data);
+     
    });
   }
   private verificaModalConteudo() {
@@ -76,7 +87,6 @@ usuario:any=[];
 
         /*service salvar*/
         this.poNotification.success(`usuário ${this.nome}, Cadastrado com sucesso.`);
-        this.confirm.loading = false;
         this.closeModal();
       }, 700);
     }

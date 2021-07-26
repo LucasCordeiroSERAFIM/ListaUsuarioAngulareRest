@@ -9,3 +9,8 @@ table {
     text-align: left;
     padding: 8px;
   }
+
+  .sample-container {
+    position: relative;
+    height: 300px;
+  }

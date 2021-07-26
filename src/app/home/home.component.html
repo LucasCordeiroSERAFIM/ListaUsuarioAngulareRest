@@ -1,50 +1,49 @@
-
 <h2>Usuários</h2><br>
-
-<div class="po-row">
+<div class="sample-container">
+  <po-loading-overlay [hidden]="isHideLoading"></po-loading-overlay>
+  <div class="po-row">
     <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Código</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Cargo</th>
-            <th scope="col">E-mail</th>
-            <th scope="col">Opções</th>
-            <th scope="col"><po-button p-label="+" (p-click)="Abrirmodal1(0)"> </po-button></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let e of usuario">
-            <td>
-              {{e.id}}
-            </td>
-            <td>
-              {{e.nome}}
-            </td>
-            <td>
-              {{e.cargo}}
-            </td>
-            <td>
-              {{e.email}}
-            </td>
-            <td>
-              <po-button p-label="Editar" (p-click)="Abrirmodal1(e.id)"></po-button>
-              <po-button p-label="Excluir" (click)="Abrirmodal2(e.id)"></po-button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <thead>
+        <tr>
+          <th scope="col">Código</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Cargo</th>
+          <th scope="col">E-mail</th>
+          <th scope="col">Opções</th>
+          <th scope="col">
+            <po-button p-label="+" (p-click)="Abrirmodal1(0)"> </po-button>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let e of usuario">
+          <td>
+            {{e.id}}
+          </td>
+          <td>
+            {{e.nome}}
+          </td>
+          <td>
+            {{e.cargo}}
+          </td>
+          <td>
+            {{e.email}}
+          </td>
+          <td>
+            <po-button p-label="Editar" (p-click)="Abrirmodal1(e.id)"></po-button>
+            <po-button p-label="Excluir" (click)="Abrirmodal2(e.id)"></po-button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
-
 <!--modal-->
 <po-modal p-title="Novo Usuário" [p-primary-action]="confirm" [p-secondary-action]="close">
 
   <form #optionsForm="ngForm">
     <!--Conteudo do Modal-->
- 
- <!--fim do modal--> 
+
+    <!--fim do modal-->
   </form>
 </po-modal>
-
-
-
